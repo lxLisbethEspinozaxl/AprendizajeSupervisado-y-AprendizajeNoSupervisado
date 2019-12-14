@@ -218,7 +218,165 @@
 			\begin{center}
 		    \includegraphics[scale=0.7]{./Imagenes/SVM}
 		    \end{center}
+\item \textbf{Algoritmos de Árbol de Decisión:}
+			
+			\\Los algoritmos de árbol de decisión desglosan el conjunto de datos mediante la formulación de preguntas hasta conseguir el fragmento de datos adecuado para hacer una predicción.\\
+            
+            \\Para verlo de una manera gráfica, consideremos un ejemplo de un árbol de decisión para determinar si es adecuado prestarle el automóvil a alguien:\\
+			
+			\begin{center}
+		    \includegraphics[scale=0.5]{./Imagenes/ArbolDeDecision}
+		    \end{center}
+			
+			\\Basado en las características de los datos de entrenamiento, el árbol de decisión “aprende” una serie de factores para inferir las etiquetas de clase de los ejemplos.\\
+
+            \\El nodo de comienzo es la raíz del árbol, y el algoritmo dividirá de forma iterativa el conjunto de datos en la característica que contenga la máxima ganancia de información, hasta que los nodos finales (hojas) sean puros.\\
+
+            \item \textbf{Bosques Aleatorios (Random Forests):}
+            
+			\\Si tenemos un conjunto de datos con muchas características (columnas), el algoritmo del árbol de decisión tiende a sobreajustar, añadiendo complejidad al modelo y el proceso de aprendizaje.\\
+            
+            \\Podemos solventar este punto seleccionando cada columna de forma aleatoria y realizando árboles de decisión para cada conjunto de columnas.\\
+			
+			\begin{center}
+		    \includegraphics[scale=0.7]{./Imagenes/BosqueAleatorios}
+		    \end{center}
+			
+			\\De esta forma, se desarrolla un algoritmo de agrupación de aprendizaje que combinará una serie de modelos más débiles para crear otro más robusto.\\
+            
+            \\El algoritmo realizará los siguientes pasos:\\
+
+            \begin{itemize}
+			    \item Diseñar una muestra de arranque de tamaño n.
+			    \item Desarrollar un árbol de decisión desde la muestra de arranque.
+			    \item En cada nodo habrá características seleccionadas aleatoriamente sin reemplazamiento y el nodo se cortará maximizando la ganancia de información.
+			    \item El proceso previo se repetirá K veces.
+			    \item Agregar la predicción hecha para cada árbol, asignando la etiqueta de clase por votación mayoritaria.
+		    \end{itemize}
+
+            \\La principal ventaja de este método es que normalmente no necesitaremos podar el bosque aleatorio (ya que el modelo es muy resistente al ruido). Sin embargo, es mucho menos interpretable que los árboles de decisión.\\
+
+            \\El único hiperparámetro que necesitaremos ajustar es el número de árboles K. Normalmente, cuanto más grande es K , mejor se comportará el modelo, pero esto incrementará drásticamente el esfuerzo de computación (y por tanto, el coste).\\
+
+            \item \textbf{Los K-vecinos Más Cercanos (K Nearest Neighbors or KNN):}
+            
+            \\Los K-vecinos más cercanos, o KNN, pertenecen a un tipo especial de modelos de machine learning que se llaman frecuentemente “algoritmos perezosos”.\\
+
+            \\Reciben este nombre porque no aprenden cómo discriminar el conjunto de datos con una función optimizada, en su lugar memorizan el conjunto de datos.\\
+            
+            \\El nombre también se refiere a la clase de algoritmos llamados “no paramétricos”. Estos son algoritmos basados en instancia , que se caracterizan por memorizar el conjunto de datos de entrenamiento, y el apredizaje perezoso es un caso particular de estos algoritmos, asociados con coste computacional cero durante el aprendizaje.\\
+
+             \\El proceso que sigue el algoritmo es:\\
+            
+            \begin{itemize}
+			    \item Escoge el número de k y la distancia.
+			    \item Encuentra el k vecino más cercano de la muestra que se pretende clasificar.
+			    \item Asigna la etiqueta de clase por votación mayoritaria.
+		    \end{itemize}
+		    
+		    \begin{center}
+		    \includegraphics[scale=0.5]{./Imagenes/KNN}
+		    \end{center}
+
+            \\El algoritmo encuentra las k muestras que son más cercanas al punto que se quiere clasificar, basando sus predicciones en la distancia métrica.\\
+
+            \\La principal ventaja es que se adapta a los nuevos datos de entrenamiento, al ser un algoritmo basado en la memoria. La desventaja es que el coste computacional se incrementa linealmente con el tamaño de los datos de entrenamiento.\\
 
 			\end{enumerate}
+	    
+	    \newpage
+	    
+	    \section{Aprendizaje No Supervisado}
+		
+		\\El aprendizaje no supervisado está más estrechamente alineado con la inteligencia artificial, ya que la idea de que una computadora pueda aprender a identificar procesos y patrones complejos sin un humano para proporcionar orientación a lo largo del camino. Algunos ejemplos de algoritmos de aprendizaje no supervisado incluyen clustering o agrupamiento, k-means y reglas de asociación.\\
+
+        \\Acá no existe un conjunto de datos de entrenamiento y los resultados son desconocidos. Esencialmente, se entra en el problema de manera ciega y con solo operaciones lógicas impecables para guiarlo, aunque parezca increible, el aprendizaje no supervisado es la capacidad de resolver problemas complejos utilizando solo los datos de entrada y los alogoritmos lógicos, y en ningún momento se tiene datos de referencias.\\
+		
+		\begin{center}
+		\includegraphics[scale=1.0]{./Imagenes/AprendisajeNoSupervisado}
+		\end{center}
+		
+		\\Un ejemplo muy simple de ambos aprendizaje es que digamos que tenemos una imagen digital que muestra una serie de formas geométricas de colores que debemos unir en grupos según su clasificación y color, este es un problema muy común en las aplicaciones de reconocimiento de imágenes de Machine Learning.\\
+
+        \\Con el aprendizaje supervisado, la solución a este problema es bastante sencillo, simplemente le enseñamos a la computadora que las formas con cuatro lados se conocen como cuadrados  y las formas de tres lados se conocen como triángulos. También le indicamos que si la luz emitida por un pixel registra ciertos valores, lo clasificamos rojo y otro conjunto de valores como azul. De esta forma muy sencilla nuestro algoritmo ha aprendido a agrupar el conjunto de formas geométricas dado.\\
+		
+		\begin{center}
+		\includegraphics[scale=1.0]{./Imagenes/EjemploAprendizajeNoSupervisado}
+		\end{center}
+		
+		\\Ahora bien con el aprendizaje no supervisado, la solución a este problema se vuelve un poco más complicado. Acá el algoritmo tiene los mismos datos de entrada, imágenes digitales que muestran formas geométricas en diferentes colores y queremos ordenarlos en grupos. Para solucionar este problema, el algoritmo aprende de la información: el problema es de clasificación y que algunas de las formas coinciden con otras, quizás con el mismo número de lados o con marcadores digitales que coinciden con el color.\\
+		
+		\\El algoritmo no puede saber que el nombre de los objetos es cuadrado o triangulo, pero si reconocerá otros objetos con más o menos las mismas características y los agrupará asignandoles su propia etiqueta. De esta forma el algoritmo ha resulto el problema dado.\\
+
+        \\Tecnicamente no hay respuesta correcta o incorrecta, Machine Learning simplemente aprenderá la verdad objetiva de que ciertas formas pertenecen juntas hasta cierto grado de probabilidad. Obviamente, Machine Learning comete errores pero, como nosotros, su fortaleza radica en su capacidad para aprender de sus errores y hacer estimaciones mejor educadas la próxima vez.\\
+
+        \\La elección de de utilizar un algoritmo de Machine Learning supervisado o no supervisado generalmente depende de factores relacionados con la estructura y el volumen de sus datos y del objetivo del problema en cuestión. Un problema complejo por lo general utilizará ambos tipos de algoritmos para construir modelos de datos predictivos que ayuden a tomar decisiones sobre una variedad de desafíos comerciales.\\
+		
+		
+		
+		
+		
+		
+		\newpage
+		\section{Diferencias entre el aprendizaje supervisado y el aprendizaje no supervisado}
+		
+		\\Los estudiantes que se aventuran en el aprendizaje automático han experimentado dificultades para diferenciar el aprendizaje supervisado del aprendizaje no supervisado. Parece que el procedimiento utilizado en ambos métodos de aprendizaje es el mismo, lo que hace que sea difícil diferenciar entre los dos métodos de aprendizaje. Sin embargo, tras el escrutinio y la atención inquebrantable, uno puede entender claramente que existen diferencias significativas entre el aprendizaje supervisado y el no supervisado.\\
+		
+	    \begin{center}	\includegraphics[scale=0.9]{./Imagenes/Diferencias}	
+		\end{center}
+	
+		\subsection{Datos de entrada en aprendizaje supervisado y aprendizaje no supervisado}
+		
+		\\La principal diferencia entre el aprendizaje supervisado y el aprendizaje no supervisado es la información utilizada en cualquiera de los métodos de aprendizaje automático. Vale la pena señalar que ambos métodos de aprendizaje automático requieren datos, que analizarán para producir ciertas funciones o grupos de datos.\\ 
+		\\Sin embargo, los datos de entrada utilizados en el aprendizaje supervisado son bien conocidos y están etiquetados. Esto significa que la máquina solo tiene la función de determinar los patrones ocultos de los datos ya etiquetados. Sin embargo, los datos utilizados en el aprendizaje no supervisado no se conocen ni etiquetan.\\
+		\\El trabajo de la máquina consiste en categorizar y etiquetar los datos brutos antes de determinar los patrones y funciones ocultos de los datos de entrada.\\
+		
+		\subsection{Complejidad Computacional en Aprendizaje Supervisado y Aprendizaje No Supervisado}
+		
+		\\El aprendizaje automático es un asunto complejo y cualquier persona involucrada debe estar preparada para la tarea que le espera. Una de las diferencias sobresalientes entre el aprendizaje supervisado y el aprendizaje no supervisado es la complejidad computacional. \\
+		\\Se dice que el aprendizaje supervisado es un método complejo de aprendizaje, mientras que el método de aprendizaje no supervisado es menos complejo. Una de las razones por las que el asunto del aprendizaje supervisado es el hecho de que uno tiene que entender y etiquetar las entradas mientras se está en el aprendizaje no supervisado, no se requiere que uno entienda y etiquete las entradas. \\
+		\\Esto explica por qué muchas personas han estado prefiriendo el aprendizaje no supervisado en comparación con el método supervisado de aprendizaje automático.\\
+
+        \subsection{Precisión de los resultados del aprendizaje supervisado y el aprendizaje no supervisado}
+		
+		\\La otra diferencia que prevalece entre el aprendizaje supervisado y el aprendizaje no supervisado es la precisión de los resultados producidos después de cada ciclo de análisis de la máquina. \\
+		\\Todos los resultados generados por el método supervisado de aprendizaje automático son más precisos y confiables en comparación con los resultados generados por el método de aprendizaje automático no supervisado. Uno de los factores que explica por qué el método supervisado de aprendizaje automático produce resultados precisos y confiables es porque los datos de entrada son bien conocidos y etiquetados, lo que significa que la máquina solo analizará los patrones ocultos. \\
+		\\Esto es diferente al método de aprendizaje no supervisado donde la máquina tiene que definir y etiquetar los datos de entrada antes de determinar los patrones y funciones ocultos.\\
+		
+		\subsection{Número de clases en Aprendizaje Supervisado y Aprendizaje No Supervisado}
+		
+		\\También vale la pena señalar que hay una diferencia significativa cuando se trata de la cantidad de clases. Vale la pena señalar que todas las clases utilizadas en el aprendizaje supervisado son conocidas, lo que significa que también es probable que se conozcan las respuestas en el análisis. \\
+		\\El único objetivo del aprendizaje supervisado es, por lo tanto, determinar el grupo desconocido. Sin embargo, no hay conocimiento previo en el método de aprendizaje automático no supervisado. \\
+		\\Además, se desconoce el número de clases, lo que significa claramente que no se conoce ninguna información y que los resultados se generan después de que no se puede determinar el análisis.\\
+		\\Además, las personas involucradas en el método de aprendizaje no supervisado no conocen ninguna información relacionada con los datos en bruto y los resultados esperados.\\
+		
+		\subsection{Aprendizaje en tiempo real en aprendizaje supervisado y aprendizaje no supervisado}
+		
+		\\Entre otras diferencias, existe el tiempo después del cual cada método de aprendizaje tiene lugar. \\
+		\\Es importante resaltar que el método de aprendizaje supervisado se lleva a cabo fuera de línea mientras que el método de aprendizaje no supervisado se lleva a cabo en tiempo real. \\
+		\\Las personas involucradas en la preparación y etiquetado de los datos de entrada lo hacen fuera de línea mientras que el análisis del patrón oculto se realiza en línea, lo que niega a las personas involucradas en el aprendizaje automático la oportunidad de interactuar con la máquina mientras analiza los datos discretos.\\ 
+		\\Sin embargo, el método de aprendizaje automático no supervisado se lleva a cabo en tiempo real de manera que todos los datos de entrada se analizan y etiquetan en presencia de los alumnos, lo que les ayuda a comprender los diferentes métodos de aprendizaje y clasificación de los datos en bruto.\\
+		\\El análisis de datos en tiempo real sigue siendo el mérito más importante del método de aprendizaje no supervisado.\\
+		
+		\begin{center}
+		\caption{TABLA QUE MUESTRA LAS DIFERENCIAS ENTRE EL APRENDIZAJE SUPERVISADO Y EL APRENDIZAJE NO SUPERVISADO}
+		\end{center}
+		
+		\begin{center}	\includegraphics[scale=0.9]{./Imagenes/CuadroDiferencia}	
+		\end{center}	
+			
+		
+		\newpage
+		\section{Conclusiones}
+		\\La minería de datos se está convirtiendo en un aspecto esencial en el mundo empresarial actual debido al aumento de los datos brutos que las organizaciones necesitan analizar y procesar para que puedan tomar decisiones sólidas y confiables.\\
+        
+        \\Esto explica por qué la necesidad de aprendizaje automático está creciendo y, por lo tanto, requiere personas con suficiente conocimiento tanto del aprendizaje automático supervisado como del aprendizaje automático no supervisado.\\
+
+        \\Vale la pena entender que cada método de aprendizaje ofrece sus propias ventajas y desventajas. Esto significa que uno tiene que estar familiarizado con ambos métodos de aprendizaje automático antes de determinar qué método utilizará para analizar los datos.\\
+	
+	    \\El aprendizaje supervisado es uno de los métodos asociados con el aprendizaje automático que implica la asignación de datos etiquetados para que se pueda deducir un determinado patrón o función a partir de esos datos. Vale la pena señalar que el aprendizaje supervisado implica la asignación de un objeto de entrada, un vector, mientras que, al mismo tiempo, anticipa el valor de salida más deseado, que se conoce principalmente como la señal de supervisión. La propiedad final del aprendizaje supervisado es que los datos de entrada son conocidos y etiquetados adecuadamente.\\
+	    
+	    \\El aprendizaje no supervisado es el segundo método de algoritmo de aprendizaje automático donde las inferencias se obtienen de datos de entrada sin etiqueta. El objetivo del aprendizaje no supervisado es determinar los patrones ocultos o la agrupación en datos de datos no etiquetados. Se usa principalmente en el análisis de datos exploratorios. Uno de los caracteres definitorios del aprendizaje no supervisado es que tanto la entrada como la salida no se conocen.\\
+			
 	    
 \end{document}		
